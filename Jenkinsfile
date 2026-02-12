@@ -1,20 +1,18 @@
 pipeline {
 
   environment {
-    // แก้เป็นตัวเล็ก และใช้ขีดกลาง (-) แทน Underscore (_)
-    VERCEL_PROJECT_NAME = 'devops16-quiz1' 
+    VERCEL_PROJECT_NAME = 'devops16-quiz1'
     VERCEL_TOKEN = credentials('devop16-vercel-quiz1') 
 }
   
    agent {
     kubernetes {
-      // This YAML defines the "Docker Container" you want to use
       yaml '''
         apiVersion: v1
         kind: Pod
         spec:
           containers:
-          - name: my-builder  # We will refer to this name later
+          - name: my-builder
             image: node:20-alpine
             command:
             - cat
@@ -49,7 +47,6 @@ pipeline {
       steps {
         container('my-builder') {
           sh 'npm install -g vercel@latest'
-          // Deploy using token-only (non-interactive)
           sh '''
             vercel link --project $VERCEL_PROJECT_NAME --token $VERCEL_TOKEN --yes
             vercel --token $VERCEL_TOKEN --prod --confirm
