@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.send('Hello, This Is The Default!');
+});
+
 app.get('/cart/items', (req, res) => {
     res.json([{ id: 1, qty: 2 }]);
 });
