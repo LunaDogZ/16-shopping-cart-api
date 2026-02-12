@@ -5,20 +5,7 @@ pipeline {
     VERCEL_TOKEN = credentials('devops16-vercel-quiz1') 
 }
   
-   agent {
-    kubernetes {
-      yaml '''
-        apiVersion: v1
-        kind: Pod
-        spec:
-          containers:
-          - name: my-builder
-            image: node:20-alpine
-            command:
-            - cat
-            tty: true
-      '''
-    }
+   agent any
   }
   stages {
     stage('Test npm') {
