@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    VERCEL_PROJECT_NAME = 'devops16-quiz1'
+    VERCEL_PROJECT_NAME = 'DevOps16-Quiz1'
     VERCEL_TOKEN = credentials('devops16-vercel-quiz1') 
 }
   
